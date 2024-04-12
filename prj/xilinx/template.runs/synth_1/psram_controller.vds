@@ -1,0 +1,438 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Thu Apr 11 15:36:34 2024
+# Process ID: 21188
+# Current directory: e:/fpga/project/PSRAM/psram/prj/xilinx/template.runs/synth_1
+# Command line: vivado.exe -log psram_controller.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source psram_controller.tcl
+# Log file: e:/fpga/project/PSRAM/psram/prj/xilinx/template.runs/synth_1/psram_controller.vds
+# Journal file: e:/fpga/project/PSRAM/psram/prj/xilinx/template.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source psram_controller.tcl -notrace
+Command: synth_design -top psram_controller -part xc7a35tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 27332 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 428.949 ; gain = 97.777
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'psram_controller' [e:/fpga/project/PSRAM/psram/user/src/psram_controller.v:1]
+	Parameter CLK_FRE bound to: 500000000 - type: integer 
+	Parameter PSRAM_FRE bound to: 200000000 - type: integer 
+	Parameter LATENCY bound to: 5 - type: integer 
+	Parameter CLK_TIME bound to: 2 - type: integer 
+	Parameter INIT_TIME bound to: -1604 - type: integer 
+	Parameter CPH_TIME bound to: 0 - type: integer 
+	Parameter IDLE bound to: 4'b0000 
+	Parameter RESET bound to: 4'b0001 
+	Parameter RESET_WAIT bound to: 4'b0010 
+	Parameter CONFIG bound to: 4'b0011 
+	Parameter INIT bound to: 4'b0100 
+	Parameter COMMAND bound to: 4'b0101 
+	Parameter ADDRESS bound to: 4'b0110 
+	Parameter WAIT bound to: 4'b0111 
+	Parameter WRITE bound to: 4'b1000 
+	Parameter READ bound to: 4'b1001 
+	Parameter DONE bound to: 4'b1010 
+	Parameter DONE_WAIT bound to: 4'b1011 
+INFO: [Synth 8-226] default block is never used [e:/fpga/project/PSRAM/psram/user/src/psram_controller.v:427]
+INFO: [Synth 8-226] default block is never used [e:/fpga/project/PSRAM/psram/user/src/psram_controller.v:460]
+INFO: [Synth 8-226] default block is never used [e:/fpga/project/PSRAM/psram/user/src/psram_controller.v:493]
+INFO: [Synth 8-155] case statement is not full and has no default [e:/fpga/project/PSRAM/psram/user/src/psram_controller.v:533]
+WARNING: [Synth 8-6014] Unused sequential element cph_cnt_reg was removed.  [e:/fpga/project/PSRAM/psram/user/src/psram_controller.v:245]
+INFO: [Synth 8-6155] done synthesizing module 'psram_controller' (1#1) [e:/fpga/project/PSRAM/psram/user/src/psram_controller.v:1]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[31]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[30]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[29]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[28]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[27]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[26]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[25]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[24]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[15]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[14]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[13]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[12]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[11]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[10]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[9]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[8]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 484.559 ; gain = 153.387
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 484.559 ; gain = 153.387
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcsg324-1
+INFO: [Device 21-403] Loading part xc7a35tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 484.559 ; gain = 153.387
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_now_reg' in module 'psram_controller'
+INFO: [Synth 8-5544] ROM "psram_dq1" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "psram_dm1" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "address_cnt" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "latency_cnt" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "init_cable_complete" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5545] ROM "state_next" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5544] ROM "state_next" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state_next" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state_next" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state_next" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state_next" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state_next" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state_next" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state_next" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state_next" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                     000000100000 |                             0000
+                   RESET |                     000010000000 |                             0001
+              RESET_WAIT |                     000000010000 |                             0010
+                    DONE |                     000000000010 |                             1010
+               DONE_WAIT |                     000001000000 |                             1011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_now_reg' using encoding 'one-hot' in module 'psram_controller'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 484.559 ; gain = 153.387
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      3 Bit       Adders := 2     
+	   2 Input      2 Bit       Adders := 2     
+	   2 Input      1 Bit       Adders := 1     
++---Registers : 
+	               16 Bit    Registers := 2     
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 3     
+	                1 Bit    Registers := 8     
++---Muxes : 
+	   4 Input     16 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 2     
+	   5 Input     12 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 3     
+	   4 Input      8 Bit        Muxes := 2     
+	   7 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 2     
+	   6 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 12    
+	   4 Input      1 Bit        Muxes := 3     
+	   5 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module psram_controller 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      3 Bit       Adders := 2     
+	   2 Input      2 Bit       Adders := 2     
+	   2 Input      1 Bit       Adders := 1     
++---Registers : 
+	               16 Bit    Registers := 2     
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 3     
+	                1 Bit    Registers := 8     
++---Muxes : 
+	   4 Input     16 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 2     
+	   5 Input     12 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 3     
+	   4 Input      8 Bit        Muxes := 2     
+	   7 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 2     
+	   6 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 12    
+	   4 Input      1 Bit        Muxes := 3     
+	   5 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-5545] ROM "state_next" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5544] ROM "state_next" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+WARNING: [Synth 8-3331] design psram_controller has unconnected port psram_exe
+WARNING: [Synth 8-3331] design psram_controller has unconnected port rw_ctrl
+WARNING: [Synth 8-3331] design psram_controller has unconnected port bit_ctrl
+WARNING: [Synth 8-3331] design psram_controller has unconnected port byte_write[1]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port byte_write[0]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port wrap_in
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[31]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[30]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[29]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[28]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[27]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[26]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[25]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[24]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[23]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[22]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[21]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[20]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[19]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[18]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[17]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[16]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[15]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[14]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[13]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[12]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[11]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[10]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[9]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[8]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[7]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[6]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[5]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[4]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[3]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[2]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[1]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port addr_in[0]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[15]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[14]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[13]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[12]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[11]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[10]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[9]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[8]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[7]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[6]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[5]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[4]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[3]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[2]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[1]
+WARNING: [Synth 8-3331] design psram_controller has unconnected port data_in[0]
+INFO: [Synth 8-3886] merging instance 'FSM_onehot_state_now_reg[11]' (FDR) to 'FSM_onehot_state_now_reg[0]'
+INFO: [Synth 8-3886] merging instance 'FSM_onehot_state_now_reg[10]' (FDR) to 'FSM_onehot_state_now_reg[0]'
+INFO: [Synth 8-3886] merging instance 'FSM_onehot_state_now_reg[0]' (FDR) to 'FSM_onehot_state_now_reg[9]'
+INFO: [Synth 8-3886] merging instance 'FSM_onehot_state_now_reg[8]' (FDR) to 'FSM_onehot_state_now_reg[9]'
+INFO: [Synth 8-3886] merging instance 'FSM_onehot_state_now_reg[3]' (FDR) to 'FSM_onehot_state_now_reg[9]'
+INFO: [Synth 8-3886] merging instance 'FSM_onehot_state_now_reg[2]' (FDR) to 'FSM_onehot_state_now_reg[9]'
+INFO: [Synth 8-3886] merging instance 'psram_dm_out_reg[0]' (FDR) to 'psram_dm_out_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\psram_dm_out_reg[1] )
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[0]' (FDRE) to 'psram_dq_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[1]' (FDRE) to 'psram_dq_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[2]' (FDRE) to 'psram_dq_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[3]' (FDRE) to 'psram_dq_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[4]' (FDRE) to 'psram_dq_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[5]' (FDRE) to 'psram_dq_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[6]' (FDRE) to 'psram_dq_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[8]' (FDRE) to 'psram_dq_out_reg[15]'
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[9]' (FDRE) to 'psram_dq_out_reg[15]'
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[10]' (FDRE) to 'psram_dq_out_reg[15]'
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[11]' (FDRE) to 'psram_dq_out_reg[15]'
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[12]' (FDRE) to 'psram_dq_out_reg[15]'
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[13]' (FDRE) to 'psram_dq_out_reg[15]'
+INFO: [Synth 8-3886] merging instance 'psram_dq_out_reg[14]' (FDRE) to 'psram_dq_out_reg[15]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\psram_dq_out_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\FSM_onehot_state_now_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_1/\data_cnt_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_1/\data_cnt_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_1/\data_cnt_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_1/\data_cnt_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_1/\data_cnt_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_1/\data_cnt_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_1/\data_cnt_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_1/\data_cnt_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_1/\data_cnt_reg[8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_1/\data_cnt_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_1/\data_cnt_reg[10] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_1/\data_cnt_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (psram_done_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (init_cable_complete_reg)
+WARNING: [Synth 8-3332] Sequential element (FSM_onehot_state_now_reg[9]) is unused and will be removed from module psram_controller.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 624.922 ; gain = 293.750
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 624.922 ; gain = 293.750
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 624.922 ; gain = 293.750
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 624.922 ; gain = 293.750
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 624.922 ; gain = 293.750
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 624.922 ; gain = 293.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 624.922 ; gain = 293.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 624.922 ; gain = 293.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 624.922 ; gain = 293.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |     8|
+|3     |LUT1   |    21|
+|4     |LUT2   |     5|
+|5     |LUT3   |     3|
+|6     |LUT4   |     5|
+|7     |LUT5   |     7|
+|8     |LUT6   |     4|
+|9     |FDRE   |    61|
+|10    |FDSE   |     1|
+|11    |IBUF   |     2|
+|12    |IOBUF  |    17|
+|13    |OBUF   |    22|
+|14    |OBUFT  |     1|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |   158|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 624.922 ; gain = 293.750
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 72 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 624.922 ; gain = 293.750
+Synthesis Optimization Complete : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 624.922 ; gain = 293.750
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 25 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 726.988 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 17 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 17 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+72 Infos, 72 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 726.988 ; gain = 408.965
+INFO: [Common 17-600] The following parameters have non-default value.
+general.maxThreads
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 726.988 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'e:/fpga/project/PSRAM/psram/prj/xilinx/template.runs/synth_1/psram_controller.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file psram_controller_utilization_synth.rpt -pb psram_controller_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Apr 11 15:36:49 2024...

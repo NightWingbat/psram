@@ -1,0 +1,5 @@
+{
+    "digital-ide.welcome.show": false,
+    "digital-ide.dont-show-again.propose.issue": true,
+    "digital-ide.function.lsp.linter.vlog.diagnostor": "modelsim"
+}

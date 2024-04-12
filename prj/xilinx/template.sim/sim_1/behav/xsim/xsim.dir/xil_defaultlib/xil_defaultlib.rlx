@@ -1,0 +1,7 @@
+0.6
+2018.3
+Dec  7 2018
+00:33:28
+e:/fpga/project/PSRAM/psram/prj/xilinx/template.sim/sim_1/behav/xsim/glbl.v,1544155481,verilog,,,,glbl,,,,,,,,
+e:/fpga/project/PSRAM/psram/user/sim/tb_psram_controller.v,1712805830,verilog,,,,tb_psram_controller,,,,,,,,
+e:/fpga/project/PSRAM/psram/user/src/psram_controller.v,1712805302,verilog,,e:/fpga/project/PSRAM/psram/user/sim/tb_psram_controller.v,,psram_controller,,,,,,,,

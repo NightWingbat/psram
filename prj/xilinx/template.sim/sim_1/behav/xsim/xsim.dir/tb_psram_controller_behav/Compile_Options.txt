@@ -1,0 +1,1 @@
+-wto "1e3d55deb71a48fd9023c22792b04852" --incr --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "tb_psram_controller_behav" "xil_defaultlib.tb_psram_controller" "xil_defaultlib.glbl" -log "elaborate.log" 
