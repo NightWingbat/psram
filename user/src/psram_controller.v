@@ -94,7 +94,7 @@ assign                         bl_config       = (burst_len == 12'd16)   ? 2'b00
                                                  (burst_len == 12'd2048) ? 2'b11 : 2'b00;
 
 //delay 160us to initialize psram
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         init_cnt <= 1'b0;
     end
@@ -108,7 +108,7 @@ always @(posedge sys_clk) begin
 end
 
 //Clock division counter
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         clk_cnt <= 1'b0;
     end
@@ -124,7 +124,7 @@ always @(posedge sys_clk) begin
 end
 
 //when reset or config registor,mark the count of psram_clk
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         mr_clk_cnt <= 2'd0;
     end
@@ -145,7 +145,7 @@ always @(posedge sys_clk) begin
 end
 
 //mark the count of registor written
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         mr_cnt <= 3'd0;
     end
@@ -161,7 +161,7 @@ always @(posedge sys_clk) begin
 end
 
 //mark the count of address sended
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         address_cnt <= 2'd0;
     end
@@ -182,7 +182,7 @@ always @(posedge sys_clk) begin
 end
 
 //mark the count of latency
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         latency_cnt <= 4'd0;
     end
@@ -203,7 +203,7 @@ always @(posedge sys_clk) begin
 end
 
 //buffer
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         psram_dm_in_d0 <= 1'b0;
     end
@@ -213,7 +213,7 @@ always @(posedge sys_clk) begin
 end
 
 //mark the count of data
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         data_cnt <= 12'd0;
     end
@@ -240,7 +240,7 @@ always @(posedge sys_clk) begin
 end
 
 //delay that satisfies TCPH
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         cph_cnt <= 1'b0;
     end
@@ -254,7 +254,7 @@ always @(posedge sys_clk) begin
 end
 
 //The data can change at this moment
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         mend_flag <= 1'b0;
     end
@@ -267,7 +267,7 @@ always @(posedge sys_clk) begin
 end
 
 //state machine
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         state_now <= IDLE;
     end
@@ -366,7 +366,7 @@ always @(*) begin
 end
 
 //when coming into INIT state,psram configuration is done
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         init_cable_complete <= 1'b0;
     end
@@ -376,7 +376,7 @@ always @(posedge sys_clk) begin
 end
 
 //psram_clk
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         psram_clk <= 1'b0;
     end
@@ -392,7 +392,7 @@ always @(posedge sys_clk) begin
 end
 
 //when in psram configuration and one transferion is done,psram_ce is high
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         psram_ce <= 1'b0;
     end
@@ -405,7 +405,7 @@ always @(posedge sys_clk) begin
 end
 
 //psram_dq_out
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         psram_dq_out <= 16'd0;
     end
@@ -612,7 +612,7 @@ always @(posedge sys_clk) begin
 end
 
 //psram_dm_out
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         psram_dm_out <= 2'b00;
     end
@@ -630,7 +630,7 @@ always @(posedge sys_clk) begin
 end
 
 //psram_done
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         psram_done <= 1'b0;
     end
@@ -643,7 +643,7 @@ always @(posedge sys_clk) begin
 end
 
 //psram_rd_valid
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         psram_rd_valid <= 1'b0;
     end
@@ -656,7 +656,7 @@ always @(posedge sys_clk) begin
 end
 
 //psram_rd_data
-always @(posedge sys_clk) begin
+always @(posedge sys_clk or negedge sys_rst) begin
     if(sys_rst == 1'b0)begin
         psram_rd_data <= 16'd0;
     end
