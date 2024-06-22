@@ -1,0 +1,360 @@
+# //  ModelSim SE-64 2020.4 Oct 13 2020
+# //
+# //  Copyright 1991-2020 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# do cmd.do
+# tb_psram_controller
+# SIM
+# EFX_IPM
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# Model Technology ModelSim SE-64 vmap 2020.4 Lib Mapping Utility 2020.10 Oct 13 2020
+# vmap work work 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
+# ** Warning: (vlog-13288) Multiple macros defined in +define+ command line switch.
+# Start time: 14:50:39 on Jun 22,2024
+# vlog -reportprogress 300 "+define+SIM+EFX_IPM" F:/FPGA_Project/PSRAM/psram/user/sim/tb_psram_controller.v 
+# -- Compiling module tb_psram_controller
+# 
+# Top level modules:
+# 	tb_psram_controller
+# End time: 14:50:39 on Jun 22,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
+# ** Warning: (vlog-13288) Multiple macros defined in +define+ command line switch.
+# Start time: 14:50:39 on Jun 22,2024
+# vlog -reportprogress 300 "+define+SIM+EFX_IPM" F:/FPGA_Project/PSRAM/psram/user/src/psram_rw.v 
+# -- Compiling module psram_rw
+# 
+# Top level modules:
+# 	psram_rw
+# End time: 14:50:39 on Jun 22,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
+# ** Warning: (vlog-13288) Multiple macros defined in +define+ command line switch.
+# Start time: 14:50:39 on Jun 22,2024
+# vlog -reportprogress 300 "+define+SIM+EFX_IPM" F:/FPGA_Project/PSRAM/psram/user/src/psram_controller.v 
+# -- Compiling module psram_controller
+# 
+# Top level modules:
+# 	psram_controller
+# End time: 14:50:39 on Jun 22,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
+# ** Warning: (vlog-13288) Multiple macros defined in +define+ command line switch.
+# Start time: 14:50:39 on Jun 22,2024
+# vlog -reportprogress 300 "+define+SIM+EFX_IPM" F:/FPGA_Project/PSRAM/psram/user/src/psram_phy.v 
+# -- Compiling module psram_phy
+# 
+# Top level modules:
+# 	psram_phy
+# End time: 14:50:39 on Jun 22,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
+# ** Warning: (vlog-13288) Multiple macros defined in +define+ command line switch.
+# Start time: 14:50:39 on Jun 22,2024
+# vlog -reportprogress 300 "+define+SIM+EFX_IPM" F:/FPGA_Project/PSRAM/psram/user/sim/clock_gen.v 
+# -- Compiling module clock_gen
+# 
+# Top level modules:
+# 	clock_gen
+# End time: 14:50:39 on Jun 22,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
+# ** Warning: (vlog-13288) Multiple macros defined in +define+ command line switch.
+# Start time: 14:50:39 on Jun 22,2024
+# vlog -reportprogress 300 "+define+SIM+EFX_IPM" E:/Software/Gowin/EDA/Gowin/Gowin_V1.9.9.03_x64/IDE/simlib/gw5a/prim_sim.v 
+# -- Compiling UDP mux2
+# -- Compiling module MUX2
+# -- Compiling module MUX2_LUT5
+# -- Compiling module MUX2_LUT6
+# -- Compiling module MUX2_LUT7
+# -- Compiling module MUX2_LUT8
+# -- Compiling module MUX2_MUX8
+# -- Compiling module MUX2_MUX16
+# -- Compiling module MUX2_MUX32
+# -- Compiling module MUX4
+# -- Compiling module MUX8
+# -- Compiling module MUX16
+# -- Compiling module MUX32
+# -- Compiling module LUT1
+# -- Compiling module LUT2
+# -- Compiling module LUT3
+# -- Compiling module LUT4
+# -- Compiling module LUT5
+# -- Compiling module LUT6
+# -- Compiling module LUT7
+# -- Compiling module LUT8
+# -- Compiling module ALU
+# -- Compiling module DFFSE
+# -- Compiling module DFFRE
+# -- Compiling module DFFPE
+# -- Compiling module DFFCE
+# -- Compiling module DLCE
+# -- Compiling module DLPE
+# -- Compiling module RAM16S1
+# -- Compiling module RAM16S2
+# -- Compiling module RAM16S4
+# -- Compiling module RAM16SDP1
+# -- Compiling module RAM16SDP2
+# -- Compiling module RAM16SDP4
+# -- Compiling module ROM16
+# -- Compiling module INV
+# -- Compiling module GND
+# -- Compiling module VCC
+# -- Compiling module GSR
+# -- Compiling module IBUF
+# -- Compiling module OBUF
+# -- Compiling module TBUF
+# -- Compiling module IOBUF
+# -- Compiling module TLVDS_IBUF
+# -- Compiling module TLVDS_OBUF
+# -- Compiling module TLVDS_TBUF
+# -- Compiling module TLVDS_IOBUF
+# -- Compiling module ELVDS_OBUF
+# -- Compiling module ELVDS_TBUF
+# -- Compiling module ELVDS_IOBUF
+# -- Compiling module MIPI_IBUF
+# -- Compiling module MIPI_OBUF_A
+# -- Compiling module IBUF_R
+# -- Compiling module IOBUF_R
+# -- Compiling module ELVDS_IOBUF_R
+# -- Compiling module I3C_IOBUF
+# -- Compiling module TLVDS_IBUF_ADC
+# -- Compiling module MIPI_CPHY_IBUF
+# -- Compiling module MIPI_CPHY_OBUF
+# -- Compiling module SP
+# -- Compiling module SPX9
+# -- Compiling module SDPB
+# -- Compiling module SDPX9B
+# -- Compiling module DPB
+# -- Compiling module DPX9B
+# -- Compiling module pROM
+# -- Compiling module pROMX9
+# -- Compiling module SDP36KE
+# -- Compiling module SDP136K
+# -- Compiling module MULTADDALU12X12
+# -- Compiling module MULTALU27X18
+# -- Compiling module MULT12X12
+# -- Compiling module MULT27X36
+# -- Compiling module MULTACC
+# -- Compiling module IDDR
+# -- Compiling module IDDRC
+# -- Compiling module IDDR_MEM
+# -- Compiling module ODDR
+# -- Compiling module ODDRC
+# -- Compiling module ODDR_MEM
+# -- Compiling module IDES4
+# -- Compiling module IDES8
+# -- Compiling module IDES10
+# -- Compiling module IDES16
+# -- Compiling module IDES4_MEM
+# -- Compiling module IVIDEO
+# -- Compiling module IDES8_MEM
+# -- Compiling module IDES14
+# -- Compiling module IDES32
+# -- Compiling module OSER4
+# -- Compiling module OSER4_MEM
+# -- Compiling module OVIDEO
+# -- Compiling module OSER8
+# -- Compiling module OSER8_MEM
+# -- Compiling module OSER10
+# -- Compiling module OSER16
+# -- Compiling module IODELAY
+# -- Compiling module OSIDES32
+# -- Compiling module OSIDES64
+# -- Compiling module DCE
+# -- Compiling module DCS
+# -- Compiling module DDRDLL
+# -- Compiling module DLLDLY
+# -- Compiling module CLKDIV
+# -- Compiling module CLKDIV2
+# -- Compiling module DHCE
+# -- Compiling module OSC
+# -- Compiling module OSCA
+# -- Compiling module OSCB
+# -- Compiling module PLL
+# -- Compiling module PLLA
+# -- Compiling module AE350_SOC
+# -- Compiling module AE350_RAM
+# -- Compiling module SAMB
+# -- Compiling module OTP
+# -- Compiling module CMSER
+# -- Compiling module CMSERA
+# -- Compiling module CMSERB
+# -- Compiling module SAMBA
+# -- Compiling module ADCLRC
+# -- Compiling module ADCULC
+# -- Compiling module ADC
+# -- Compiling module MIPI_DPHY_RX
+# -- Compiling module MIPI_DPHY
+# -- Compiling module GTR12_QUAD
+# -- Compiling module GTR12_UPAR
+# -- Compiling module GTR12_PMAC
+# -- Compiling module GTR12_QUADA
+# -- Compiling module GTR12_UPARA
+# -- Compiling module GTR12_PMACA
+# -- Compiling module GTR12_QUADB
+# -- Compiling module DQS
+# 
+# Top level modules:
+# 	MUX2_LUT5
+# 	MUX2_LUT6
+# 	MUX2_LUT7
+# 	MUX2_LUT8
+# 	MUX2_MUX8
+# 	MUX2_MUX16
+# 	MUX2_MUX32
+# 	LUT1
+# 	LUT2
+# 	LUT3
+# 	LUT4
+# 	LUT8
+# 	ALU
+# 	DFFSE
+# 	DFFRE
+# 	DFFPE
+# 	DFFCE
+# 	DLCE
+# 	DLPE
+# 	RAM16S1
+# 	RAM16S2
+# 	RAM16S4
+# 	RAM16SDP1
+# 	RAM16SDP2
+# 	RAM16SDP4
+# 	ROM16
+# 	INV
+# 	GND
+# 	VCC
+# 	GSR
+# 	IBUF
+# 	OBUF
+# 	TBUF
+# 	IOBUF
+# 	TLVDS_IBUF
+# 	TLVDS_OBUF
+# 	TLVDS_TBUF
+# 	TLVDS_IOBUF
+# 	ELVDS_OBUF
+# 	ELVDS_TBUF
+# 	ELVDS_IOBUF
+# 	MIPI_IBUF
+# 	MIPI_OBUF_A
+# 	IBUF_R
+# 	IOBUF_R
+# 	ELVDS_IOBUF_R
+# 	I3C_IOBUF
+# 	TLVDS_IBUF_ADC
+# 	MIPI_CPHY_IBUF
+# 	MIPI_CPHY_OBUF
+# 	SP
+# 	SPX9
+# 	SDPB
+# 	SDPX9B
+# 	DPB
+# 	DPX9B
+# 	pROM
+# 	pROMX9
+# 	SDP36KE
+# 	SDP136K
+# 	MULTADDALU12X12
+# 	MULTALU27X18
+# 	MULT12X12
+# 	MULT27X36
+# 	MULTACC
+# 	IDDR
+# 	IDDRC
+# 	IDDR_MEM
+# 	ODDR
+# 	ODDRC
+# 	ODDR_MEM
+# 	IDES4
+# 	IDES8
+# 	IDES10
+# 	IDES16
+# 	IDES4_MEM
+# 	IVIDEO
+# 	IDES8_MEM
+# 	IDES14
+# 	IDES32
+# 	OSER4
+# 	OSER4_MEM
+# 	OVIDEO
+# 	OSER8
+# 	OSER8_MEM
+# 	OSER10
+# 	OSER16
+# 	OSIDES64
+# 	DCE
+# 	DCS
+# 	DDRDLL
+# 	DLLDLY
+# 	CLKDIV
+# 	CLKDIV2
+# 	DHCE
+# 	OSC
+# 	OSCA
+# 	OSCB
+# 	PLL
+# 	PLLA
+# 	AE350_SOC
+# 	AE350_RAM
+# 	SAMB
+# 	OTP
+# 	CMSER
+# 	CMSERA
+# 	CMSERB
+# 	SAMBA
+# 	ADCLRC
+# 	ADCULC
+# 	ADC
+# 	MIPI_DPHY_RX
+# 	MIPI_DPHY
+# 	GTR12_QUAD
+# 	GTR12_UPAR
+# 	GTR12_PMAC
+# 	GTR12_QUADA
+# 	GTR12_UPARA
+# 	GTR12_PMACA
+# 	GTR12_QUADB
+# 	DQS
+# End time: 14:50:39 on Jun 22,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
+# Start time: 14:50:40 on Jun 22,2024
+# vlog -reportprogress 300 -sv -sv09compat "+define+SIM" F:/FPGA_Project/PSRAM/psram/user/sim/W958D6NKY.modelsim.vp 
+# -- Compiling module W958D6NKY
+# 
+# Top level modules:
+# 	W958D6NKY
+# End time: 14:50:40 on Jun 22,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t ps "+notimingchecks" -gui -voptargs=""+acc"" work.tb_psram_controller 
+# Start time: 14:50:40 on Jun 22,2024
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_psram_controller(fast)
+# Loading work.clock_gen(fast)
+# Loading work.clock_gen(fast__1)
+# Loading work.psram_controller(fast)
+# Loading work.psram_phy(fast)
+# Loading work.ODDR(fast)
+# Loading work.IDDR(fast)
+# Loading work.GSR(fast)
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: lenovo  Hostname: LAPTOP-NO57EJO6  ProcessID: 27724
+#           Attempting to use alternate WLF file "./wlftxjn2zs".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftxjn2zs
+# End time: 16:12:23 on Jun 22,2024, Elapsed time: 1:21:43
+# Errors: 0, Warnings: 2

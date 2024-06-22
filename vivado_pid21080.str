@@ -1,0 +1,95 @@
+/*
+
+Xilinx Vivado v2018.3 (64-bit) [Major: 2018, Minor: 3]
+SW Build: 2405991 on Thu Dec  6 23:38:27 MST 2018
+IP Build: 2404404 on Fri Dec  7 01:43:56 MST 2018
+
+Process ID (PID): 21080
+License: Customer
+
+Current time: 	Wed Jun 19 12:26:24 CST 2024
+Time zone: 	China Standard Time (Asia/Shanghai)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 20
+
+Screen size: 2560x1600
+Screen resolution (DPI): 144
+Available screens: 1
+Available disk space: 372 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=18
+
+Java version: 	9.0.4 64-bit
+Java home: 	E:/Software/Vivado2018/Vivado/2018.3/tps/win64/jre9.0.4
+Java executable location: 	E:/Software/Vivado2018/Vivado/2018.3/tps/win64/jre9.0.4/bin/java.exe
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	lenovo
+User home directory: C:/Users/lenovo
+User working directory: F:/FPGA_Project/PSRAM/psram
+User country: 	CN
+User language: 	zh
+User locale: 	zh_CN
+
+RDI_BASEROOT: E:/Software/Vivado2018/Vivado
+HDI_APPROOT: E:/Software/Vivado2018/Vivado/2018.3
+RDI_DATADIR: E:/Software/Vivado2018/Vivado/2018.3/data
+RDI_BINDIR: E:/Software/Vivado2018/Vivado/2018.3/bin
+
+Vivado preferences file location: C:/Users/lenovo/AppData/Roaming/Xilinx/Vivado/2018.3/vivado.xml
+Vivado preferences directory: C:/Users/lenovo/AppData/Roaming/Xilinx/Vivado/2018.3/
+Vivado layouts directory: C:/Users/lenovo/AppData/Roaming/Xilinx/Vivado/2018.3/layouts
+PlanAhead jar file location: 	E:/Software/Vivado2018/Vivado/2018.3/lib/classes/planAhead.jar
+Vivado log file location: 	
+Vivado journal file location: 	
+Engine tmp dir: 	F:/FPGA_Project/PSRAM/psram/.Xil/Vivado-21080-LAPTOP-NO57EJO6
+
+Xilinx Environment Variables
+----------------------------
+XILINX: E:/Software/Vivado2018/Vivado/2018.3/ids_lite/ISE
+XILINX_DSP: E:/Software/Vivado2018/Vivado/2018.3/ids_lite/ISE
+XILINX_PLANAHEAD: E:/Software/Vivado2018/Vivado/2018.3
+XILINX_SDK: E:/Software/Vivado2018/SDK/2018.3
+XILINX_VIVADO: E:/Software/Vivado2018/Vivado/2018.3
+XILINX_VIVADO_HLS: E:/Software/Vivado2018/Vivado/2018.3
+
+
+GUI allocated memory:	185 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 822 MB
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// [GUI Memory]: 89 MB (+90796kb) [00:00:03]
+// [Engine Memory]: 714 MB (+596990kb) [00:00:03]
+// [GUI Memory]: 100 MB (+6766kb) [00:00:04]
+// Tcl Message: source c:/Users/lenovo/.vscode/extensions/sterben.fpga-support-0.3.3/resources/script/xilinx/launch.tcl -notrace 
+// Tcl Message: Vivado% 
+// Tcl Message: start_gui -quiet 
+// [Engine Memory]: 788 MB (+39919kb) [00:00:04]
+// [GUI Memory]: 117 MB (+12422kb) [00:00:05]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// Tcl Message: update_compile_order -fileset sim_1 
+// HMemoryUtils.trashcanNow. Engine heap size: 822 MB. GUI used memory: 57 MB. Current time: 6/19/24, 12:26:26 PM CST
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, psram_controller (psram_controller.v)]", 1, false); // B (D, cp)
+// [Engine Memory]: 829 MB (+1755kb) [00:00:12]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, psram_controller (psram_controller.v)]", 1, false, false, false, false, false, true); // B (D, cp) - Double Click
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// [Engine Memory]: 871 MB (+1387kb) [00:00:14]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+selectCodeEditor("psram_controller.v", 72, 423); // cl (w, cp)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager, Add Sources]", 2, false); // u (Q, cp)
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+// c (cp): Add Sources: addNotify

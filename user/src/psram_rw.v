@@ -1,57 +1,91 @@
 module psram_rw #(
-    parameter BIT_MODE  = 16,
-    parameter WRAP_MODE = "wrap"
+    parameter BIT_WIDTH  = 16,
+    parameter BURST_LEN  = 32
 ) (
-    input              sys_clk,
-    input              sys_rst,
+    input                         ram_clk,
+    input                         ram_rst,
 
-    input              init_cable_complete,
+    input                         init_cable_complete,
+    input                         ctrl_idle,
 
-    input              psram_done,
-    input              psram_wr_valid,
-    input              psram_rd_valid,
+    input                         ram_wr_valid,
+    input                         ram_rd_valid,
 
-    output  reg        psram_exe,
-    output  reg        rw_ctrl,
-    output             bit_ctrl,
-    output      [1:0]  byte_write,
-    output             wrap_in,
-    output      [31:0] addr_in,
-    output      [15:0] data_in,
-    output      [11:0] burst_len,
-    output      [1:0]  command_in
+    output  [31:0]                addr_in,
+    output                        rw_ctrl,
+    output                        ram_en,
+    output  reg [BIT_WIDTH*2-1:0] ram_data_in
+
 );
 
-localparam IDLE    = 3'd0;
-localparam WRITE   = 3'd1;
-localparam WR_WAIT = 3'd2;
-localparam WR_DONE = 3'd3;
-localparam READ    = 3'd4;
-localparam RD_WAIT = 3'd5;
-localparam RD_DONE = 3'd6;
+localparam IDLE  = 3'd0;
+localparam WAIT1 = 3'd1;
+localparam WRITE = 3'd2;
+localparam WAIT2 = 3'd3;
+localparam READ  = 3'd4;
 
-reg [2:0]  state_now;
-reg [2:0]  state_next;
-
+reg [5:0]  wait_cnt;
 reg [11:0] wr_cnt;
 reg [11:0] rd_cnt;
 
-assign bit_ctrl   = (BIT_MODE == 16) ? 1'b1 : 1'b0;
+reg [2:0] state_now;
+reg [2:0] state_next;
 
-assign byte_write = 2'b00;
+assign addr_in = 32'd4;
+assign rw_ctrl = (state_now == WAIT1) ? 1'b1 : (state_now == WAIT2) ? 1'b0 : 1'b1;
+assign ram_en  = (wait_cnt == 6'd63) ? 1'b1 : 1'b0;
 
-assign wrap_in    = (WRAP_MODE == "wrap") ? 1'b0 : 1'b1;
+//wait_cnt
+always @(posedge ram_clk or negedge ram_rst) begin
+    if(ram_rst == 1'b0)begin
+        wait_cnt <= 6'd0;
+    end
+    else if((state_now == WAIT1 || state_now == WAIT2) && ctrl_idle == 1'b1)begin
+        wait_cnt <= wait_cnt + 1'b1;
+    end
+    else begin
+        wait_cnt <= 6'd0;
+    end
+end
 
-assign addr_in    = 32'd0;
+//wr_cnt
+always @(posedge ram_clk or negedge ram_rst) begin
+    if(ram_rst == 1'b0)begin
+        wr_cnt <= 12'd0;
+    end
+    else if(state_now == WRITE && ram_wr_valid == 1'b1)begin
+        if(wr_cnt < BURST_LEN - 2)begin
+            wr_cnt <= wr_cnt + 2'd2;
+        end
+        else begin
+            wr_cnt <= wr_cnt;
+        end
+    end
+    else begin
+        wr_cnt <= 12'd0;
+    end
+end
 
-assign burst_len  = 12'd32;
+//rd_cnt
+always @(posedge ram_clk or negedge ram_rst) begin
+    if(ram_rst == 1'b0)begin
+        rd_cnt <= 12'd0;
+    end
+    else if(state_now == READ && ram_rd_valid == 1'b1)begin
+        if(rd_cnt < BURST_LEN - 2)begin
+            rd_cnt <= rd_cnt + 2'd2;
+        end
+        else begin
+            rd_cnt <= rd_cnt;
+        end
+    end
+    else begin
+        rd_cnt <= 12'd0;
+    end
+end
 
-assign command_in = 2'b00;
-
-assign data_in    = {4'd0,wr_cnt};
-
-always @(posedge sys_clk or negedge sys_rst) begin
-    if(sys_rst == 1'b0)begin
+always @(posedge ram_clk or negedge ram_rst) begin
+    if(ram_rst == 1'b0)begin
         state_now <= IDLE;
     end
     else begin
@@ -60,51 +94,50 @@ always @(posedge sys_clk or negedge sys_rst) begin
 end
 
 always @(*) begin
-    if(sys_rst == 1'b0)begin
+    if(ram_rst == 1'b0)begin
         state_next <= IDLE;
     end
     else begin
         case(state_now)
             IDLE:begin
                 if(init_cable_complete)begin
-                    state_next <= WRITE;
+                    state_next <= WAIT1;
                 end
                 else begin
                     state_next <= IDLE;
                 end
             end
-            WRITE:begin
-                state_next <= WR_WAIT;
-            end
-            WR_WAIT:begin
-                if(wr_cnt == burst_len)begin
-                    state_next <= WR_DONE;
+            WAIT1:begin
+                if(wait_cnt == 6'd63)begin
+                    state_next <= WRITE;
                 end
                 else begin
-                    state_next <= WR_WAIT;
+                    state_next <= WAIT1;
                 end
             end
-            WR_DONE:begin
-                if(psram_done)begin
+            WRITE:begin
+                if(wr_cnt == BURST_LEN - 2)begin
+                    state_next <= WAIT2;
+                end
+                else begin
+                    state_next <= WRITE;
+                end
+            end
+            WAIT2:begin
+                if(wait_cnt == 6'd63)begin
                     state_next <= READ;
                 end
                 else begin
-                    state_next <= WR_DONE;
+                    state_next <= WAIT2;
                 end
             end
             READ:begin
-                state_next <= RD_WAIT;
-            end
-            RD_WAIT:begin
-                if(rd_cnt == burst_len)begin
-                    state_next <= RD_DONE;
+                if(rd_cnt == BURST_LEN - 2)begin
+                    state_next <= WAIT1;
                 end
                 else begin
-                    state_next <= RD_WAIT;
+                    state_next <= READ;
                 end
-            end
-            RD_DONE:begin
-                state_next <= WRITE;
             end
             default:begin
                 state_next <= IDLE;
@@ -113,64 +146,16 @@ always @(*) begin
     end
 end
 
-//psram_exe
-always @(posedge sys_clk or negedge sys_rst) begin
-    if(sys_rst == 1'b0)begin
-        psram_exe <= 1'b0;
+//ram_data_in
+always @(posedge ram_clk or negedge ram_rst) begin
+    if(ram_rst == 1'b0)begin
+        ram_data_in <= 32'h04060103;
     end
-    else if(psram_done)begin
-        psram_exe <= 1'b1;
-    end
-    else begin
-        psram_exe <= 1'b0;
-    end
-end
-
-//rw_ctrl
-always @(posedge sys_clk or negedge sys_rst) begin
-    if(sys_rst == 1'b0)begin
-        rw_ctrl <= 1'b0;
-    end
-    else if(state_now == WRITE)begin
-        rw_ctrl <= 1'b1;
-    end
-    else if(state_now == READ)begin
-        rw_ctrl <= 1'b0;
-    end
-    else begin
-        rw_ctrl <= rw_ctrl;
-    end
-end
-
-//wr_cnt
-always @(posedge sys_clk or negedge sys_rst) begin
-    if(sys_rst == 1'b0)begin
-        wr_cnt <= 12'd0;
-    end
-    else if(state_now == WR_WAIT)begin
-        if(psram_wr_valid)
-            wr_cnt <= wr_cnt + 1'b1;
-        else
-            wr_cnt <= wr_cnt;
-    end
-    else begin
-        wr_cnt <= 12'd0;
-    end
-end
-
-//rd_cnt
-always @(posedge sys_clk or negedge sys_rst) begin
-    if(sys_rst == 1'b0)begin
-        rd_cnt <= 12'd0;
-    end
-    else if(state_now == RD_WAIT)begin
-        if(psram_rd_valid)
-            rd_cnt <= rd_cnt + 1'b1;
-        else
-            rd_cnt <= rd_cnt;
-    end
-    else begin
-        rd_cnt <= 12'd0;
+    else if(state_now == WRITE && ram_wr_valid == 1'b1)begin
+        ram_data_in[7:0]   <= ram_data_in[7:0]   + 1'b1;
+		ram_data_in[15:8]  <= ram_data_in[15:8]  + 1'b1;
+		ram_data_in[23:16] <= ram_data_in[23:16] + 1'b1;
+		ram_data_in[31:24] <= ram_data_in[31:24] + 1'b1;
     end
 end
 

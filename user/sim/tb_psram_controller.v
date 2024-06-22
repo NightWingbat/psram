@@ -1,120 +1,224 @@
+`timescale 100ps/10ps
+
 module tb_psram_controller();
 
-parameter CLK_FRE    = 528_000_000;
-parameter PSRAM_FRE  = 66_000_000;
-parameter LATENCY    = 3;
-parameter MAIN_FRE   = 528; //unit MHz
+`include "Config-AC.v"
+
+parameter PSRAM_FRE  = 200_000_000;
+parameter LATENCY    = 7;
+parameter BIT_WIDTH  = 16;
+parameter BURST_LEN  = 16;
+parameter WARP_MODE  = "Wrap";
+parameter RW_METHOD  = "Linear";
+
+parameter MAIN_FRE     = 200; //unit MHz
+parameter FREQ_CLK_MHZ = 200;
 reg                   sys_clk = 0;
-reg                   sys_rst;
+reg                   sys_rst = 0;
 
 always begin
-    #(528/MAIN_FRE) sys_clk = ~sys_clk;
+    #(500/MAIN_FRE) sys_clk = ~sys_clk;
 end
 
-/*
 always begin
     #50 sys_rst = 1;
 end
-*/
 
-//Instance 
-wire        	init_cable_complete;
-wire        	psram_clk;
-wire        	psram_ce;
-wire        	psram_done;
-wire [15:0] 	psram_rd_data;
-wire        	psram_rd_valid;
-wire        	psram_wr_valid;
-wire [15:0]     psram_dq;
-wire [1:0]      psram_dm;
+//clock
+reg		rst;
 
-reg				psram_exe;
-reg				rw_ctrl;
-reg				bit_ctrl;
-reg	 [1:0]		byte_write;
-reg				wrap_in;
-reg  [31:0]     addr_in;
-reg  [15:0]		data_in;
-reg  [11:0]		burst_len;
-reg  [1:0]		command_in;
+wire	clk_400m;
+wire   	clk_out0;
+wire   	clk_out45;
+wire   	clk_out90;
+wire   	clk_out135;
+wire   	locked;
 
-//psram_exe
-always @(posedge sys_clk) begin
-	if(sys_rst == 1'b0)begin
-		psram_exe <= 1'b0;
-	end
-	else if(psram_done)begin
-		psram_exe <= 1'b1;
-	end
-	else begin
-		psram_exe <= 1'b0;
-	end
-end
+//psram
+wire                   	init_cable_complete;
+wire                   	ctrl_idle;
 
-//data_in
-always @(posedge psram_wr_valid or negedge sys_rst) begin
-	if(sys_rst == 1'b0)begin
-		data_in <= 16'd0;
-	end
-	else if(psram_wr_valid)begin
-		data_in <= data_in + 1'b1;
-	end
-end
+wire                   	psram_clk;
+wire                   	psram_ce;
 
-initial begin
-	sys_rst = 1'b0;
-	#50
-	sys_rst = 1'b1;
-	#50
-	sys_rst = 1'b0;
-	#50
-	sys_rst = 1'b1;
-end
+wire                   	dq_en;
+wire [BIT_WIDTH-1:0]   	dq_out_hi;
+wire [BIT_WIDTH-1:0]   	dq_out_lo;
+
+wire                   	dm_en;
+wire [1:0]             	dm_out_hi;
+wire [1:0]             	dm_out_lo;
+
+wire [BIT_WIDTH*2-1:0] 	ram_data_out;
+wire                   	ram_rd_valid;
+wire                   	ram_wr_valid;
+
+wire				    ram_en;
+wire					rw_ctrl;
+wire[31:0]				addr_in;
+reg [BIT_WIDTH*2-1:0]   ram_data_in;
+
+wire[BIT_WIDTH-1:0]     dq_in_hi;
+wire[BIT_WIDTH-1:0]     dq_in_lo;
+
+wire[1:0]             	dm_in_hi;
+wire[1:0]             	dm_in_lo;
+
+wire                 	o_psram_clk;
+wire                 	o_psram_ce;
+wire[BIT_WIDTH-1:0]		io_psram_dq;
+wire[1:0]				io_psram_dm;
+
+localparam	TCYC	 = 1000000/FREQ_CLK_MHZ;
+localparam  TS       = TCYC/100;
 
 initial begin
-	rw_ctrl    = 1'b1;
-	bit_ctrl   = 1'b1;
-	byte_write = 2'b00;
-	wrap_in    = 1'b0;
-	addr_in    = 32'd0;
-	burst_len  = 12'd32;
-	command_in = 2'b00;
+	rst = 1'b1;
+	#(100*TS);
+	rst = 1'b0;
 end
 
-psram_controller #(
-	.CLK_FRE   	( CLK_FRE    ),
-	.PSRAM_FRE 	( PSRAM_FRE  ),
-	.LATENCY   	( LATENCY    ))
-u_psram_controller(
-	.sys_clk             	( sys_clk              ),
-	.sys_rst             	( sys_rst              ),
-	
-	.psram_exe           	( psram_exe            ),
-	.rw_ctrl             	( rw_ctrl              ),
-	.bit_ctrl            	( bit_ctrl             ),
-	.byte_write          	( byte_write           ),
-	.wrap_in             	( wrap_in              ),
-	.addr_in             	( addr_in              ),
-	.data_in             	( data_in              ),
-	.burst_len           	( burst_len            ),
-	.command_in          	( command_in           ),
+assign addr_in = 32'd4;
+assign rw_ctrl = 1'b1;
+assign ram_en  = init_cable_complete & ctrl_idle;
+
+always @(posedge clk_out0 or negedge locked) begin
+    if(locked == 1'b0)begin
+        ram_data_in <= 32'h04060103;
+    end
+    else if(ram_wr_valid == 1'b1)begin
+        ram_data_in[7:0]   <= ram_data_in[7:0]   + 1'b1;
+		ram_data_in[15:8]  <= ram_data_in[15:8]  + 1'b1;
+		ram_data_in[23:16] <= ram_data_in[23:16] + 1'b1;
+		ram_data_in[31:24] <= ram_data_in[31:24] + 1'b1;
+    end
+end
+
+clock_gen #(
+	.FREQ_CLK_MHZ 	( FREQ_CLK_MHZ  ))
+u_clock_gen(
+	.rst        	( rst         ),
+	.clk_out0   	( clk_out0    ),
+	.clk_out45  	( clk_out45   ),
+	.clk_out90  	( clk_out90   ),
+	.clk_out135 	( clk_out135  ),
+	.locked     	( locked      )
+);
+
+clock_gen #(
+	.FREQ_CLK_MHZ 	( 400		  ))
+u_clock_400m(
+	.rst        	( rst         ),
+	.clk_out0   	( clk_400m    ),
+	.clk_out45  	(    		  ),
+	.clk_out90  	(    		  ),
+	.clk_out135 	(   		  ),
+	.locked     	(       	  )
+);
+
+/*
+psram_rw #(
+	.BIT_WIDTH 	( BIT_WIDTH  ),
+	.BURST_LEN 	( BURST_LEN  ))
+u_psram_rw(
+	.ram_clk             	( clk_out0             ),
+	.ram_rst             	( locked               ),
 	
 	.init_cable_complete 	( init_cable_complete  ),
+	.ctrl_idle           	( ctrl_idle            ),
+	
+	.ram_wr_valid        	( ram_wr_valid         ),
+	.ram_rd_valid        	( ram_rd_valid         ),
+	
+	.addr_in             	( addr_in              ),
+	.rw_ctrl             	( rw_ctrl              ),
+	.ram_en              	( ram_en               ),
+	.ram_data_in         	( ram_data_in          )
+);
+*/
+
+psram_controller #(
+	.PSRAM_FRE 	( PSRAM_FRE  ),
+	.LATENCY   	( LATENCY    ),
+	.BIT_WIDTH 	( BIT_WIDTH  ),
+	.BURST_LEN 	( BURST_LEN  ),
+	.WARP_MODE 	( WARP_MODE  ),
+	.RW_METHOD 	( RW_METHOD  ))
+u_psram_controller(
+	.ram_clk             	( clk_out0             ),
+	.ram_clk_p           	( clk_out90            ),
+	.ram_rst             	( locked               ),
+	
+	.ram_en              	( ram_en               ),
+	.rw_ctrl             	( rw_ctrl              ),
+	.addr_in             	( addr_in              ),
+	.ram_data_in         	( ram_data_in          ),
+	
+	.init_cable_complete 	( init_cable_complete  ),
+	.ctrl_idle           	( ctrl_idle            ),
 	
 	.psram_clk           	( psram_clk            ),
 	.psram_ce            	( psram_ce             ),
-	.psram_dq            	( psram_dq             ),
-	.psram_dm            	( psram_dm             ),
 	
-	.psram_done          	( psram_done           ),
-	.psram_rd_data       	( psram_rd_data        ),
-	.psram_rd_valid      	( psram_rd_valid       ),
-	.psram_wr_valid      	( psram_wr_valid       ));
+	.dq_en               	( dq_en                ),
+	.dq_out_hi           	( dq_out_hi            ),
+	.dq_out_lo           	( dq_out_lo            ),
+	.dq_in_hi            	( dq_in_hi             ),
+	.dq_in_lo            	( dq_in_lo             ),
+	
+	.dm_en               	( dm_en                ),
+	.dm_out_hi           	( dm_out_hi            ),
+	.dm_out_lo           	( dm_out_lo            ),
+	.dm_in_hi            	( dm_in_hi             ),
+	.dm_in_lo            	( dm_in_lo             ),
+	
+	.ram_data_out        	( ram_data_out         ),
+	.ram_rd_valid        	( ram_rd_valid         ),
+	.ram_wr_valid        	( ram_wr_valid         )
+);
 
-initial begin            
-    $dumpfile("wave.vcd");        
-    $dumpvars(0, tb_psram_controller);    
-    #500000 $finish;
-end
+psram_phy #(
+	.DEVICE    	( "Gowin"   ),
+	.BIT_WIDTH 	( BIT_WIDTH ))
+u_psram_phy(
+	.ram_clk     	( clk_out0     ),
+	.ram_clk_p   	( clk_out90    ),
+	
+	.dq_en       	( dq_en        ),
+	.dq_out_hi   	( dq_out_hi    ),
+	.dq_out_lo   	( dq_out_lo    ),
+	.dq_in_hi    	( dq_in_hi     ),
+	.dq_in_lo    	( dq_in_lo     ),
+	
+	.dm_en       	( dm_en        ),
+	.dm_out_hi   	( dm_out_hi    ),
+	.dm_out_lo   	( dm_out_lo    ),
+	.dm_in_hi    	( dm_in_hi     ),
+	.dm_in_lo    	( dm_in_lo     ),
+	
+	.psram_clk   	( psram_clk    ),
+	.psram_ce    	( psram_ce     ),
+	
+	.o_psram_clk 	( o_psram_clk  ),
+	.o_psram_ce  	( o_psram_ce   ),
+	.io_psram_dq 	( io_psram_dq  ),
+	.io_psram_dm 	( io_psram_dm  )
+);
+
+GSR GSR(.GSRI(1'b1));
+
+/*
+W958D6NKY ram_x16_inst(
+	.adq	(io_psram_dq), 		
+    .clk	(o_psram_clk),		
+    .clk_n	(1'b0		),      
+    .csb	(o_psram_ce	),		
+    .rwds	(io_psram_dm),        
+    .VCC	(1'b1		),
+    .VSS	(1'b0		),
+    .resetb	(	),
+    .die_stack	(1'b0	),
+    .optddp	(1'b0		));
+*/
 
 endmodule  //TOP
