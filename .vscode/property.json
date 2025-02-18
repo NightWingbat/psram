@@ -7,5 +7,24 @@
 		"core": "none"
 	},
 	"enableShowLog": false,
-	"device": "xc7a35tcsg324-1"
+	"device": "xc7a35tcsg324-1",
+	"library": {
+		"state": "remote",
+		"hardware": {
+			"common": [],
+			"custom": [
+				"F:/FPGA_Project/IP_lib/user/src/memory/FIFO/async_fifo.v",
+				"F:/FPGA_Project/IP_lib/user/src/memory/FIFO/async_fifo.v",
+				"F:/FPGA_Project/IP_lib/user/src/memory/FIFO/DPRAM.v",
+				"F:/FPGA_Project/IP_lib/user/src/memory/FIFO/ecc_decode.sv",
+				"F:/FPGA_Project/IP_lib/user/src/memory/FIFO/ecc_encode.sv",
+				"F:/FPGA_Project/IP_lib/user/src/memory/FIFO/ecc_pkg.sv",
+				"F:/FPGA_Project/IP_lib/user/src/memory/PSRAM/hbram_ctrl.v",
+				"F:/FPGA_Project/IP_lib/user/src/memory/PSRAM/hbram_ctrl.v",
+				"F:/FPGA_Project/IP_lib/user/src/memory/PSRAM/hbram_ctrl.v",
+				"F:/FPGA_Project/IP_lib/user/src/memory/PSRAM/hbram_ctrl.v",
+				"Interface/spi_slave.v"
+			]
+		}
+	}
 }

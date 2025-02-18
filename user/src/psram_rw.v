@@ -28,12 +28,12 @@ reg [5:0]  wait_cnt;
 reg [11:0] wr_cnt;
 reg [11:0] rd_cnt;
 
-reg [2:0] state_now;
-reg [2:0] state_next;
+reg [2:0]  state_now;
+reg [2:0]  state_next;
 
-assign addr_in = 32'd4;
-assign rw_ctrl = (state_now == WAIT1) ? 1'b1 : (state_now == WAIT2) ? 1'b0 : 1'b1;
-assign ram_en  = (wait_cnt == 6'd63) ? 1'b1 : 1'b0;
+assign     addr_in = 32'd4;
+assign     rw_ctrl = (state_now == WAIT1) ? 1'b1 : (state_now == WAIT2) ? 1'b0 : 1'b1;
+assign     ram_en  = (wait_cnt == 6'd63) ? 1'b1 : 1'b0;
 
 //wait_cnt
 always @(posedge ram_clk or negedge ram_rst) begin
